@@ -258,8 +258,9 @@ Read:
 `workflows/mocking.md`
 
 Generate a real, viewable prototype in the user's chosen language (`html`,
-`react`, or `typescript`) under `.ui-engineering/mocks/<feature>/`. This
-is disposable and non-integrated — it is how the user actually sees and
+`react`, or `typescript`) under the top-level `mocks/<feature>/` (not
+inside `.ui-engineering/` — see `workflows/mocking.md`). This is
+disposable and non-integrated — it is how the user actually sees and
 feels the spec before committing to `/uiEng build`.
 
 ### 8. Implement
@@ -329,11 +330,14 @@ Use project-local `.ui-engineering/`:
 ├── knowledge/
 ├── synthesis/
 ├── specs/
-├── mocks/
-│   └── <feature>/          (real html/react/typescript files, see
-│                            workflows/mocking.md — not in src/)
 └── status.yaml
 ```
+
+Mocks are the one exception to "everything lives in `.ui-engineering/`" —
+they're written to a **top-level** `mocks/<feature>/` folder (sibling of
+`.ui-engineering/`, not inside it) because they're meant to be opened in a
+browser or run directly, not buried in the internal state folder. See
+`workflows/mocking.md`.
 
 The skill package is reusable. Project-specific knowledge belongs in the
 application repository, not inside the global skill package.

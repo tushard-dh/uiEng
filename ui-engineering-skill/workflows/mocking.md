@@ -37,13 +37,24 @@ scratch.
 ## Output location
 
 ```text
-.ui-engineering/mocks/<feature>/
+mocks/<feature>/
 ```
 
-Kept out of `src/` deliberately — a mock is a preview artifact, not a
-component the catalog should pick up. If the user later approves it for
-real implementation, that happens through `/uiEng build`, which produces
-proper, catalog-registered components.
+Top-level, at the product repo's root — a sibling of `.ui-engineering/`,
+not nested inside it. Read `mocking.output_dir` from
+`.ui-engineering/config.yaml` (default `mocks`) rather than assuming the
+path.
+
+This is deliberate: `.ui-engineering/` is the skill's internal
+knowledge/state folder (specs, decisions, catalog) that nothing outside
+the skill needs to open directly. A mock is the opposite — its entire
+purpose is to be opened in a browser or run, by the user, right now.
+Burying it inside the internal state folder defeats that.
+
+Also kept out of `src/` — a mock is a preview artifact, not a component
+the catalog should pick up. If the user later approves it for real
+implementation, that happens through `/uiEng build`, which produces
+proper, catalog-registered components in `src/`.
 
 ## Generation rules (all languages)
 
@@ -112,5 +123,5 @@ Tell the user:
 
 ## Output
 
-`.ui-engineering/mocks/<feature>/` — files as specified above, in the
-chosen language. Not a JSON artifact; no schema.
+`mocks/<feature>/` (top-level, see "Output location" above) — files as
+specified above, in the chosen language. Not a JSON artifact; no schema.

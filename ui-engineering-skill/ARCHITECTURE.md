@@ -99,10 +99,11 @@ feeling output, uncritical execution, and unscalable prototypes.
   `workflows/distinctiveness.md` and `rules/distinctiveness-rules.md`
 
 ### Mocking
-- produces real, viewable files (`.ui-engineering/mocks/<feature>/`) in
-  html/react/typescript from an existing spec; disposable and
-  non-integrated, distinct from `/uiEng build`'s catalog-registered,
-  API-wired output — see `workflows/mocking.md`
+- produces real, viewable files (top-level `mocks/<feature>/`, sibling of
+  `.ui-engineering/` — not inside it) in html/react/typescript from an
+  existing spec; disposable and non-integrated, distinct from
+  `/uiEng build`'s catalog-registered, API-wired output — see
+  `workflows/mocking.md`
 
 ## Source-of-truth hierarchy
 

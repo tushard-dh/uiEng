@@ -22,7 +22,9 @@ decision_memory:
   promote_after_confirmations: 2
 mocking:
   default_lang: null  # html | react | typescript — null means ask/infer
-  output_dir: ".ui-engineering/mocks"
+  output_dir: "mocks"  # top-level, sibling of .ui-engineering/ — mocks are
+                        # meant to be opened/run directly, not buried in
+                        # the internal knowledge folder
 validation:
   deterministic: true
   accessibility: true

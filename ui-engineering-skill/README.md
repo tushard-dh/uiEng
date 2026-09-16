@@ -146,8 +146,10 @@ established.
 ## Mocking (real files, not just a spec)
 
 `/uiEng mock <feature> [--lang html|react|typescript]` turns a UI spec
-into an actual, viewable prototype under `.ui-engineering/mocks/<feature>/`
-— open the HTML directly, or run the generated React/TypeScript scaffold.
+into an actual, viewable prototype under a top-level `mocks/<feature>/`
+folder (sibling of `.ui-engineering/`, not inside it — mocks are meant to
+be opened, not buried in the internal state folder) — open the HTML
+directly, or run the generated React/TypeScript scaffold.
 It asks which language if one isn't set in `config.yaml` or inferable from
 the product's existing stack. Mocks are disposable and not wired to real
 APIs or the component catalog; `/uiEng build` is the separate path that

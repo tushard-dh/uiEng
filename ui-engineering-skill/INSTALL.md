@@ -49,9 +49,11 @@ The skill creates:
 ├── knowledge/
 ├── synthesis/
 ├── specs/
-├── mocks/
-│   └── <feature>/
 └── status.yaml
+
+mocks/                  (top-level, sibling of .ui-engineering/ — not
+└── <feature>/           inside it, since mocks are meant to be opened
+                          directly, not buried in internal state)
 ```
 
 ## 4. Recommended workflow
@@ -143,10 +145,10 @@ Output:
 /uiEng mock <feature-name> --lang html
 ```
 
-Generates an actual, viewable prototype under
-`.ui-engineering/mocks/<feature-name>/` in `html`, `react`, or
-`typescript` — omit `--lang` to be asked or have it inferred from the
-product's existing stack. See `workflows/mocking.md`.
+Generates an actual, viewable prototype under the top-level
+`mocks/<feature-name>/` (sibling of `.ui-engineering/`, not inside it) in
+`html`, `react`, or `typescript` — omit `--lang` to be asked or have it
+inferred from the product's existing stack. See `workflows/mocking.md`.
 
 ### Phase H — Build
 
