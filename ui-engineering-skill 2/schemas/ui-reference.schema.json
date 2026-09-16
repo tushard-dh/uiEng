@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "reference"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "reference": {
+      "type": "object",
+      "required": [
+        "source",
+        "reference_id"
+      ],
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "reference_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "selected_by": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+version: "1.0"
+skill: ui-engineering
+mcp:
+  mobbin:
+    enabled: true
+    required_for_reference_work: false
+design_system:
+  source: "application"
+  token_policy: "semantic"
+workflow:
+  require_spec_before_build: true
+  ask_high_impact_questions_only: true
+validation:
+  deterministic: true
+  accessibility: true
+  responsive: true

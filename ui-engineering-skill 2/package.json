@@ -1,0 +1,9 @@
+{
+  "name": "ui-engineering-skill",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Claude UI engineering skill package",
+  "scripts": {
+    "validate": "python scripts/validate_schema.py .ui-engineering && python scripts/validate_ui.py ."
+  }
+}

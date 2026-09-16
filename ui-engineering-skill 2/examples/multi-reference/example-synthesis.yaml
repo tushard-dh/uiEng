@@ -1,0 +1,24 @@
+synthesis:
+  name: physician-management
+  references:
+    - id: mobbin-dashboard-01
+      contribution:
+        - navigation
+        - page-hierarchy
+        - dashboard-layout
+    - id: mobbin-table-07
+      contribution:
+        - search
+        - filtering
+        - table
+        - row-actions
+  rules:
+    navigation: reference_1
+    page_structure: reference_1
+    table: reference_2
+    filters: reference_2
+    typography: internal_design_system
+    colors: internal_design_system
+  conflicts:
+    - conflict: card-density
+      resolution: internal_design_system

@@ -1,0 +1,6 @@
+synthesis:
+  name: example-feature
+  references: []
+  rules: {}
+  conflicts: []
+  rationale: []

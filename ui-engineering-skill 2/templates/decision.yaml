@@ -1,0 +1,15 @@
+feature: example-feature
+decisions:
+  - id: UX-001
+    question: "How should details open?"
+    options:
+      - full_page
+      - drawer
+      - modal
+    selected: drawer
+    reasoning:
+      - preserves list/search context
+    confidence: high
+    source:
+      - product_requirement
+      - ux_analysis

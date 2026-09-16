@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "reference",
+    "components",
+    "interactions",
+    "states"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "reference": {
+      "type": "object"
+    },
+    "context": {
+      "type": "object"
+    },
+    "information_architecture": {
+      "type": "object"
+    },
+    "layout": {
+      "type": "object"
+    },
+    "visual_language": {
+      "type": "object"
+    },
+    "components": {
+      "type": "array"
+    },
+    "interactions": {
+      "type": "array"
+    },
+    "states": {
+      "type": "array"
+    },
+    "responsive": {
+      "type": "object"
+    },
+    "accessibility": {
+      "type": "object"
+    },
+    "content": {
+      "type": "object"
+    },
+    "patterns": {
+      "type": "array"
+    },
+    "constraints": {
+      "type": "array"
+    },
+    "observations": {
+      "type": "array"
+    },
+    "inferences": {
+      "type": "array"
+    },
+    "unknowns": {
+      "type": "array"
+    },
+    "provenance": {
+      "type": "array"
+    }
+  }
+}

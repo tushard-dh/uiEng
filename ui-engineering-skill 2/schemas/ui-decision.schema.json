@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "feature",
+    "decisions"
+  ],
+  "properties": {
+    "feature": {
+      "type": "string"
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "question",
+          "selected",
+          "reasoning",
+          "confidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array"
+          },
+          "selected": {
+            "type": "string"
+          },
+          "reasoning": {
+            "type": "array"
+          },
+          "confidence": {
+            "type": "string"
+          },
+          "source": {
+            "type": "array"
+          }
+        }
+      }
+    }
+  }
+}

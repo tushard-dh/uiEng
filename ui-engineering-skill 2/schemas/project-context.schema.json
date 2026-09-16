@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "project",
+    "features"
+  ],
+  "properties": {
+    "project": {
+      "type": "object"
+    },
+    "features": {
+      "type": "array"
+    },
+    "design_system": {
+      "type": "object"
+    },
+    "constraints": {
+      "type": "array"
+    }
+  }
+}

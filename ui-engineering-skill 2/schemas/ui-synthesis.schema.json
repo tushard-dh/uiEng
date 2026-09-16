@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "synthesis"
+  ],
+  "properties": {
+    "synthesis": {
+      "type": "object",
+      "required": [
+        "name",
+        "references"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "references": {
+          "type": "array"
+        },
+        "rules": {
+          "type": "object"
+        },
+        "conflicts": {
+          "type": "array"
+        },
+        "rationale": {
+          "type": "array"
+        }
+      }
+    }
+  }
+}

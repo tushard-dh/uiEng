@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "feature",
+    "screens",
+    "acceptance_criteria"
+  ],
+  "properties": {
+    "feature": {
+      "type": "string"
+    },
+    "users": {
+      "type": "array"
+    },
+    "routes": {
+      "type": "array"
+    },
+    "screens": {
+      "type": "array"
+    },
+    "layout": {
+      "type": "object"
+    },
+    "components": {
+      "type": "array"
+    },
+    "data_bindings": {
+      "type": "array"
+    },
+    "api_dependencies": {
+      "type": "array"
+    },
+    "interactions": {
+      "type": "array"
+    },
+    "states": {
+      "type": "array"
+    },
+    "responsive": {
+      "type": "object"
+    },
+    "accessibility": {
+      "type": "object"
+    },
+    "permissions": {
+      "type": "array"
+    },
+    "acceptance_criteria": {
+      "type": "array"
+    },
+    "provenance": {
+      "type": "array"
+    }
+  }
+}

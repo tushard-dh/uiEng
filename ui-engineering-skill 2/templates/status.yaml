@@ -1,0 +1,11 @@
+project: ""
+current_stage: discovery
+feature: ""
+references_selected: 0
+knowledge_complete: false
+decisions_complete: false
+synthesis_complete: false
+spec_complete: false
+implementation_complete: false
+validation_complete: false
+blockers: []

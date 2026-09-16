@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "reference": {
+    "source": "mobbin",
+    "reference_id": "",
+    "name": ""
+  },
+  "context": {},
+  "information_architecture": {},
+  "layout": {},
+  "visual_language": {},
+  "components": [],
+  "interactions": [],
+  "states": [],
+  "responsive": {},
+  "accessibility": {},
+  "content": {},
+  "patterns": [],
+  "constraints": [],
+  "observations": [],
+  "inferences": [],
+  "unknowns": [],
+  "provenance": []
+}
