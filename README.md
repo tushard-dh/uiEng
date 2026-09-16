@@ -8,7 +8,7 @@ The skill itself lives at `ui-engineering-skill/` in this repo. This
 repo root (`install.sh`, `README.md`, `COMMANDS.md`) is just the
 distribution mechanism — it is not the skill itself.
 
-Repo: https://github.com/tushardh14/uiEng
+Repo: https://github.com/tushard-dh/uiEng
 
 ## Install on another device
 
@@ -16,23 +16,23 @@ Clone this repo (or just grab `install.sh`) onto the new machine, then run:
 
 ```bash
 # Global install — available in every project on this machine
-./install.sh https://github.com/tushardh14/uiEng.git global
+./install.sh https://github.com/tushard-dh/uiEng.git global
 
 # Project-only install — run from the target product repo's root
-./install.sh https://github.com/tushardh14/uiEng.git project
+./install.sh https://github.com/tushard-dh/uiEng.git project
 ```
 
 Or, without cloning anything first, run it straight from the raw GitHub URL:
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/tushardh14/uiEng/main/install.sh) \
-  https://github.com/tushardh14/uiEng.git global
+bash <(curl -fsSL https://raw.githubusercontent.com/tushard-dh/uiEng/main/install.sh) \
+  https://github.com/tushard-dh/uiEng.git global
 ```
 
 Optional third argument pins a branch/tag:
 
 ```bash
-./install.sh https://github.com/tushardh14/uiEng.git global v1.2.0
+./install.sh https://github.com/tushard-dh/uiEng.git global v1.2.0
 ```
 
 ## What it does

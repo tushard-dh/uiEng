@@ -14,8 +14,8 @@
 #                       repo's default branch.
 #
 # One-liner (remote, without cloning this folder first):
-#   bash <(curl -fsSL https://raw.githubusercontent.com/tushardh14/uiEng/main/install.sh) \
-#     https://github.com/tushardh14/uiEng.git global
+#   bash <(curl -fsSL https://raw.githubusercontent.com/tushard-dh/uiEng/main/install.sh) \
+#     https://github.com/tushard-dh/uiEng.git global
 #
 # What it does:
 #   1. Shallow-clones the repo into a temp dir.
