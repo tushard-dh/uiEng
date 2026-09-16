@@ -14,13 +14,13 @@
 #                       repo's default branch.
 #
 # One-liner (remote, without cloning this folder first):
-#   bash <(curl -fsSL https://raw.githubusercontent.com/<org>/<repo>/main/ui-skill-installer/install.sh) \
-#     https://github.com/<org>/<repo>.git global
+#   bash <(curl -fsSL https://raw.githubusercontent.com/tushardh14/uiEng/main/install.sh) \
+#     https://github.com/tushardh14/uiEng.git global
 #
 # What it does:
 #   1. Shallow-clones the repo into a temp dir.
-#   2. Copies the skill directory (.claude/skills/ui-engineering, or .ui as
-#      a fallback for older layouts) to the destination.
+#   2. Finds wherever SKILL.md lives in that clone (repo layout may change
+#      over time) and copies that directory to the destination.
 #   3. Leaves everything else in the source repo untouched.
 
 set -euo pipefail
@@ -28,9 +28,6 @@ set -euo pipefail
 REPO_URL="${1:-${REPO_URL:-}}"
 TARGET="${2:-${TARGET:-global}}"
 REF="${3:-${REF:-}}"
-
-# Where inside the source repo the skill package lives. Tries each in order.
-CANDIDATE_PATHS=(".claude/skills/ui-engineering" ".ui")
 
 if [ -z "$REPO_URL" ]; then
   echo "Usage: $0 <github-repo-url> [global|project] [branch]" >&2
@@ -56,19 +53,18 @@ if [ -n "$REF" ]; then
 fi
 git clone "${CLONE_ARGS[@]}" "$REPO_URL" "$TMP_DIR/repo"
 
-SRC=""
-for candidate in "${CANDIDATE_PATHS[@]}"; do
-  if [ -f "$TMP_DIR/repo/$candidate/SKILL.md" ]; then
-    SRC="$TMP_DIR/repo/$candidate"
-    break
-  fi
-done
+# Find the skill package wherever SKILL.md actually lives in this repo,
+# instead of guessing a fixed path — the repo layout has moved before and
+# will likely move again.
+SKILL_MD="$(find "$TMP_DIR/repo" -maxdepth 3 -iname 'SKILL.md' -print -quit)"
 
-if [ -z "$SRC" ]; then
-  echo "Could not find a SKILL.md under any of: ${CANDIDATE_PATHS[*]}" >&2
+if [ -z "$SKILL_MD" ]; then
+  echo "Could not find a SKILL.md anywhere in $REPO_URL (searched 3 levels deep)." >&2
   echo "Check the repo layout or pass a different branch/ref." >&2
   exit 1
 fi
+
+SRC="$(dirname "$SKILL_MD")"
 
 mkdir -p "$(dirname "$DEST")"
 if [ -d "$DEST" ]; then

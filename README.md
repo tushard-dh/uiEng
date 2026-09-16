@@ -1,55 +1,47 @@
 # ui-engineering skill installer
 
 Portable installer for the `ui-engineering` Claude Code skill (the `/uiEng`
-workflow). Use this to set up the exact same skill on another machine from
-a GitHub repo, without manually copying folders around.
+workflow). Use this to set up the exact same skill on another machine, from
+this GitHub repo, without manually copying folders around.
 
-The skill itself lives at `.claude/skills/ui-engineering/` in this repo
-(source package: `.ui/`). This `ui-skill-installer/` folder is just the
-distribution mechanism — it does not contain the skill itself.
+The skill itself lives at `ui-engineering-skill/` in this repo. This
+repo root (`install.sh`, `README.md`, `COMMANDS.md`) is just the
+distribution mechanism — it is not the skill itself.
 
-## Prerequisite: push this repo to GitHub
-
-This installer clones a repo URL, so the repo needs to be on GitHub first:
-
-```bash
-git remote add origin https://github.com/<org>/<repo>.git
-git push -u origin main
-```
-
-(Skip this if the repo is already pushed.)
+Repo: https://github.com/tushardh14/uiEng
 
 ## Install on another device
 
-Clone this repo (or just this script) onto the new machine, then run:
+Clone this repo (or just grab `install.sh`) onto the new machine, then run:
 
 ```bash
 # Global install — available in every project on this machine
-./install.sh https://github.com/<org>/<repo>.git global
+./install.sh https://github.com/tushardh14/uiEng.git global
 
-# Project-only install — run from the target project's root
-./install.sh https://github.com/<org>/<repo>.git project
+# Project-only install — run from the target product repo's root
+./install.sh https://github.com/tushardh14/uiEng.git project
 ```
 
 Or, without cloning anything first, run it straight from the raw GitHub URL:
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/<org>/<repo>/main/ui-skill-installer/install.sh) \
-  https://github.com/<org>/<repo>.git global
+bash <(curl -fsSL https://raw.githubusercontent.com/tushardh14/uiEng/main/install.sh) \
+  https://github.com/tushardh14/uiEng.git global
 ```
 
 Optional third argument pins a branch/tag:
 
 ```bash
-./install.sh https://github.com/<org>/<repo>.git global v1.2.0
+./install.sh https://github.com/tushardh14/uiEng.git global v1.2.0
 ```
 
 ## What it does
 
 1. Shallow-clones the given repo into a temp directory.
-2. Looks for the skill package at `.claude/skills/ui-engineering/` (falls
-   back to `.ui/` for older layouts) and confirms `SKILL.md` is present.
-3. Copies it to:
+2. Searches the clone for `SKILL.md` (up to 3 levels deep) — this makes it
+   resilient to the skill folder being renamed or moved, rather than
+   depending on a hardcoded path.
+3. Copies that directory to:
    - `~/.claude/skills/ui-engineering` for a `global` install, or
    - `./.claude/skills/ui-engineering` for a `project` install.
 4. Cleans up the temp clone.
