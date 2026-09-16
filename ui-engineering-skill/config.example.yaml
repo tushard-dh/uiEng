@@ -7,6 +7,12 @@ mcp:
 design_system:
   source: "application"
   token_policy: "semantic"
+component_catalog:
+  enabled: true
+  paths:
+    - "src/components"
+  extensions: [".tsx", ".jsx", ".vue", ".svelte"]
+  stale_after_days: 14
 workflow:
   require_spec_before_build: true
   ask_high_impact_questions_only: true

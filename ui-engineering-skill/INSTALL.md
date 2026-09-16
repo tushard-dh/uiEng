@@ -66,6 +66,17 @@ Claude inspects:
 - requirements
 - existing screens
 
+### Phase A.5 — Catalog existing components
+
+```text
+/uiEng catalog
+```
+
+Scans the configured component directories (`component_catalog.paths` in
+`.ui-engineering/config.yaml`) and produces
+`.ui-engineering/component-catalog.json`. Every later phase that reuses or
+proposes components reads from this file.
+
 ### Phase B — Resolve important decisions
 
 ```text
@@ -206,7 +217,13 @@ Run deterministic validation in CI:
 ```bash
 python scripts/validate_schema.py .ui-engineering
 python scripts/validate_ui.py .
+python scripts/scan_components.py . --paths src/components --out .ui-engineering/component-catalog.json
 ```
+
+Running `scan_components.py` in CI keeps the catalog's raw scan fresh even
+if a contributor forgets to run `/uiEng catalog` locally; the semantic
+classification pass still needs a Claude session before the enrichment is
+complete.
 
 The application repository can add these commands to its CI pipeline.
 

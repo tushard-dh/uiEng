@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UI Component Catalog",
+  "type": "object",
+  "required": ["version", "generated_at", "components"],
+  "properties": {
+    "version": { "type": "string" },
+    "generated_at": { "type": ["string", "null"], "format": "date-time" },
+    "project_root": { "type": "string" },
+    "scanned_paths": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "framework": {
+      "type": "string",
+      "enum": ["react", "vue", "svelte", "angular", "other", "unknown"]
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "path", "source"],
+        "properties": {
+          "name": { "type": "string" },
+          "path": { "type": "string" },
+          "category": {
+            "type": "string",
+            "enum": ["primitive", "composite", "pattern", "page", "unknown"]
+          },
+          "description": { "type": "string" },
+          "props": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "type": { "type": "string" },
+                "required": { "type": "boolean" }
+              }
+            }
+          },
+          "design_tokens_used": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "variants": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "needs_review": { "type": "boolean" },
+          "source": {
+            "type": "string",
+            "enum": ["scanned", "manual", "enriched"]
+          },
+          "last_scanned": { "type": ["string", "null"], "format": "date-time" }
+        }
+      }
+    },
+    "unresolved_references": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Component names referenced elsewhere in the codebase that could not be resolved to a file during scanning."
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "total_components": { "type": "integer" },
+        "needs_review_count": { "type": "integer" }
+      }
+    }
+  }
+}

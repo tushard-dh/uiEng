@@ -76,6 +76,7 @@ Then:
 
 ```text
 /uiEng discover physician-management
+/uiEng catalog
 /uiEng ask
 /uiEng mobbin
 /uiEng analyze
@@ -169,8 +170,16 @@ scripts/
 ├── validate_schema.py
 ├── create_artifact.py
 ├── validate_ui.py
-└── status.py
+├── status.py
+└── scan_components.py
 ```
+
+`scan_components.py` walks the configured component directories and
+produces a raw, deterministic component inventory (name, path, best-effort
+props). Claude then classifies ambiguous entries semantically as a
+follow-up pass — see `workflows/component-catalog.md`. This is what backs
+the `/uiEng catalog` command and lets `/uiEng build`/`/uiEng spec` reuse
+real components instead of guessing what already exists.
 
 No AI reasoning is hidden inside Python scripts.
 

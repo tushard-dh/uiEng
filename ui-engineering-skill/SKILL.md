@@ -33,6 +33,8 @@ Interpret `/uiEng` commands as follows:
 - `/uiEng init` — initialize `.ui-engineering/` and project context.
 - `/uiEng discover <feature>` — understand requirements, existing UI, API
   contracts, user roles, and unknowns.
+- `/uiEng catalog` — scan the product repo for existing UI components and
+  refresh `.ui-engineering/component-catalog.json`.
 - `/uiEng ask` — ask only high-impact UX/product questions.
 - `/uiEng mobbin` — use the configured Mobbin MCP to browse/search references
   and let the user select one or more references.
@@ -72,6 +74,8 @@ number of questions needed to choose a safe path.
 14. Prefer qualitative decision confidence unless measurable scoring criteria
     are explicitly defined.
 15. For multiple references, analyze each independently before synthesis.
+16. Before proposing or building a new component, check the component
+    catalog for reuse or near-duplicate candidates.
 
 ## Workflow
 
@@ -93,6 +97,11 @@ Collect:
 - unknowns
 
 Create/update `.ui-engineering/project-context.md`.
+
+As part of discovery, build or refresh the component catalog (see
+`workflows/component-catalog.md`) if it does not exist yet or is stale.
+Every later stage that reuses or creates components reads from this
+catalog rather than re-inspecting the codebase ad hoc.
 
 ### 2. Select references
 
@@ -212,7 +221,9 @@ Read:
 `workflows/implementation.md`
 
 Before coding:
-- inspect existing components
+- refresh the component catalog if stale (`workflows/component-catalog.md`)
+- check the catalog for reusable/near-duplicate components before creating
+  new ones
 - reuse approved primitives
 - inspect API types/contracts
 - confirm spec status
@@ -263,6 +274,7 @@ Use project-local `.ui-engineering/`:
 .ui-engineering/
 ├── config.yaml
 ├── project-context.md
+├── component-catalog.json
 ├── decisions/
 ├── references/
 ├── knowledge/
@@ -282,6 +294,9 @@ Scripts are intentionally small and deterministic:
 - `create_artifact.py` — create standard feature/artifact directories.
 - `validate_ui.py` — static UI compliance checks.
 - `status.py` — summarize project workflow state.
+- `scan_components.py` — deterministic filesystem scan producing a raw
+  component catalog (name, path, best-effort props); semantic
+  classification is a Claude follow-up pass, not scripted.
 
 Do not create scripts for reasoning tasks such as UI analysis, decision making,
 reference synthesis, or UX recommendation. Those are Claude/MCP responsibilities.

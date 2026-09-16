@@ -7,6 +7,10 @@
               |                 |
         Product Context     Existing Code
               |                 |
+              |          Component Catalog
+              |           (scan_components.py
+              |            + Claude classification)
+              |                 |
               +--------+--------+
                        |
                  Decision Engine
@@ -20,8 +24,8 @@
                          |
                      Synthesis
                          |
-                     UI Spec
-                         |
+                     UI Spec  <---- checked against Component Catalog
+                         |          before proposing new components
                     Frontend Code
                          |
                    Validation
@@ -58,6 +62,8 @@
 - workspace creation
 - status
 - static UI checks
+- component catalog scanning (filesystem only; semantic classification of
+  ambiguous entries is done by the Claude Skill, not the script)
 
 ## Source-of-truth hierarchy
 
