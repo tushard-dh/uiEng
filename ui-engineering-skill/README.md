@@ -75,6 +75,7 @@ Inside a product repository:
 Then:
 
 ```text
+/uiEng mode thorough
 /uiEng discover physician-management
 /uiEng catalog
 /uiEng ask
@@ -87,6 +88,7 @@ Then:
 /uiEng review
 /uiEng fix
 /uiEng status
+/uiEng patterns
 ```
 
 You do not need to run every command manually. `/uiEng` can inspect state and
@@ -120,6 +122,23 @@ Expected behavior:
 13. Build using existing components.
 14. Validate.
 15. Report remaining issues.
+
+## Depth control
+
+`/uiEng mode quick|standard|thorough` trades speed for exhaustiveness:
+fewer/more questions asked, fewer/more Mobbin references pulled, and one
+recommendation vs. several scored synthesis variants. See
+`workflows/mode.md`. Accessibility, security, and product-requirement
+rules are never affected by mode.
+
+## Decision memory
+
+Repeated decisions across features (e.g. "drawer vs. full page" showing up
+the same way on a third screen) get promoted into
+`.ui-engineering/decisions/patterns.json` and reused automatically on
+later features instead of being re-asked, while staying overridable. See
+`workflows/decision-memory.md`. Use `/uiEng patterns` to see what's been
+established.
 
 ## Multi-reference example
 

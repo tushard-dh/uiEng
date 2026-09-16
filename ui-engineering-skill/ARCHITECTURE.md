@@ -13,8 +13,9 @@
               |                 |
               +--------+--------+
                        |
-                 Decision Engine
-                       |
+                 Decision Engine <---> Decision Memory
+                       |               (patterns.json,
+                       |                cross-feature reuse)
              +---------+---------+
              |         |         |
           Mobbin    Knowledge   Design System
@@ -22,7 +23,8 @@
              |           |          |
              +-----------+----------+
                          |
-                     Synthesis
+                     Synthesis  <---- variant count set by
+                         |            active Mode (quick/standard/thorough)
                          |
                      UI Spec  <---- checked against Component Catalog
                          |          before proposing new components
@@ -64,6 +66,16 @@
 - static UI checks
 - component catalog scanning (filesystem only; semantic classification of
   ambiguous entries is done by the Claude Skill, not the script)
+
+### Decision memory
+- cross-feature pattern storage (`.ui-engineering/decisions/patterns.json`)
+- matching analogous decisions across features and promoting/overriding
+  patterns is reasoning, done by the Claude Skill, not scripted
+
+### Mode
+- a persisted config value (`workflow.mode`) that scales question count,
+  reference count, and synthesis variant count up or down; does not alter
+  the source-of-truth hierarchy below
 
 ## Source-of-truth hierarchy
 

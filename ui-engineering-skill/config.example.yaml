@@ -16,6 +16,10 @@ component_catalog:
 workflow:
   require_spec_before_build: true
   ask_high_impact_questions_only: true
+  mode: "standard"  # quick | standard | thorough — see workflows/mode.md
+decision_memory:
+  enabled: true
+  promote_after_confirmations: 2
 validation:
   deterministic: true
   accessibility: true

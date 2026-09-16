@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UI Decision Patterns",
+  "type": "object",
+  "required": ["version", "patterns"],
+  "properties": {
+    "version": { "type": "string" },
+    "patterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "topic", "resolved", "confidence", "status", "confirmations"],
+        "properties": {
+          "id": { "type": "string" },
+          "topic": {
+            "type": "string",
+            "description": "Generalized decision topic, not tied to one feature."
+          },
+          "resolved": { "type": "string" },
+          "reasoning": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "confidence": {
+            "type": "string",
+            "enum": ["high", "medium", "low", "unknown"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["proposed", "established", "overridden"]
+          },
+          "confirmations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["feature", "decision_id"],
+              "properties": {
+                "feature": { "type": "string" },
+                "decision_id": { "type": "string" }
+              }
+            }
+          },
+          "overridden_by": {
+            "type": "string",
+            "description": "id of the pattern that replaced this one, when status is overridden."
+          },
+          "override_notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

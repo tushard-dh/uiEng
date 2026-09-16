@@ -35,6 +35,8 @@ Interpret `/uiEng` commands as follows:
   contracts, user roles, and unknowns.
 - `/uiEng catalog` — scan the product repo for existing UI components and
   refresh `.ui-engineering/component-catalog.json`.
+- `/uiEng mode <quick|standard|thorough>` — set how much gets asked/pulled/
+  explored (see `workflows/mode.md`). Defaults to `standard` if never set.
 - `/uiEng ask` — ask only high-impact UX/product questions.
 - `/uiEng mobbin` — use the configured Mobbin MCP to browse/search references
   and let the user select one or more references.
@@ -47,8 +49,10 @@ Interpret `/uiEng` commands as follows:
 - `/uiEng review` — validate implementation against rules and spec.
 - `/uiEng fix` — fix validation findings.
 - `/uiEng status` — show current workflow state.
-- `/uiEng why <decision-or-screen>` — explain the decision, evidence and
-  tradeoffs.
+- `/uiEng why <decision-or-screen-or-pattern>` — explain the decision (or
+  established pattern), evidence and tradeoffs.
+- `/uiEng patterns` — list established/proposed project-wide decision
+  patterns and their confirmation counts (see `workflows/decision-memory.md`).
 - `/uiEng evolve` — analyze an existing UI and recommend controlled evolution.
 
 If a command is ambiguous, inspect state first and ask only the smallest
@@ -76,6 +80,12 @@ number of questions needed to choose a safe path.
 15. For multiple references, analyze each independently before synthesis.
 16. Before proposing or building a new component, check the component
     catalog for reuse or near-duplicate candidates.
+17. Before asking a high-impact question, check for a matching established
+    decision pattern from a prior feature and reuse it instead of asking
+    again, unless the current mode or context makes it inapplicable.
+18. Depth of questioning, reference gathering, and synthesis variants is
+    governed by the active mode (`workflows/mode.md`), not improvised
+    per-conversation.
 
 ## Workflow
 
@@ -107,6 +117,8 @@ catalog rather than re-inspecting the codebase ad hoc.
 
 When the user requests Mobbin-based design:
 - Use the configured Mobbin MCP.
+- Pull as many references as the active mode allows (`workflows/mode.md`:
+  quick=2, standard=5, thorough=10).
 - Let the user select one or more references.
 - Save reference metadata using `schemas/ui-reference.schema.json`.
 - Do not treat a screenshot as proof of hidden behavior.
@@ -141,9 +153,13 @@ Analyze:
 ### 4. Decide
 
 Read:
-`workflows/decision-making.md`
+`workflows/decision-making.md` and `workflows/decision-memory.md`
 
-Ask only high-impact questions. Examples:
+Before asking, check `.ui-engineering/decisions/patterns.json` for a
+matching established pattern and reuse it instead of asking again.
+
+Ask only high-impact questions, capped/expanded per the active mode
+(`workflows/mode.md`). Examples:
 - table vs cards
 - drawer vs full page
 - single vs multi-step form
@@ -156,6 +172,10 @@ system already defines it.
 
 Persist decisions using:
 `schemas/ui-decision.schema.json`
+
+After persisting, update `.ui-engineering/decisions/patterns.json` per
+`workflows/decision-memory.md` (new proposed pattern, confirmation, or
+override).
 
 ### 5. Compare
 
@@ -179,6 +199,8 @@ Create:
 `schemas/ui-synthesis.schema.json`
 
 Synthesis must explicitly map which reference contributes which pattern.
+Produce 1 recommendation in `quick`/`standard` mode, or 2–3 scored
+variants in `thorough` mode (`workflows/mode.md`).
 
 Use this priority:
 1. product requirements
@@ -276,6 +298,8 @@ Use project-local `.ui-engineering/`:
 ├── project-context.md
 ├── component-catalog.json
 ├── decisions/
+│   ├── <feature>.json      (per-feature, schemas/ui-decision.schema.json)
+│   └── patterns.json       (project-wide, schemas/ui-pattern.schema.json)
 ├── references/
 ├── knowledge/
 ├── synthesis/

@@ -54,8 +54,13 @@ The skill creates:
 ### Phase A — Understand
 
 ```text
+/uiEng mode standard
 /uiEng discover physician-management
 ```
+
+`/uiEng mode` is optional — it defaults to `standard` if never set. Use
+`quick` for a fast pass or `thorough` for a fully explored spec with
+scored synthesis variants; see `workflows/mode.md`.
 
 Claude inspects:
 - frontend architecture
@@ -145,10 +150,14 @@ Output:
 /uiEng why physician-detail
 ```
 
+Works for stored decisions and for established patterns
+(`.ui-engineering/decisions/patterns.json`).
+
 ### Phase K — Check state
 
 ```text
 /uiEng status
+/uiEng patterns
 ```
 
 ## 5. One-command orchestration

@@ -9,6 +9,9 @@ Synthesis is a controlled composition of patterns from multiple references.
 - Apply product requirements first.
 - Normalize all visual primitives to the internal design system.
 - Record contribution/provenance.
+- Produce 1 recommendation in `quick`/`standard` mode. In `thorough` mode,
+  produce 2–3 scored variants with explicit tradeoffs instead, and ask the
+  user to pick one before moving to spec (`workflows/mode.md`).
 
 Example:
 
