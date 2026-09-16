@@ -41,21 +41,30 @@ The skill creates:
 .ui-engineering/
 ├── config.yaml
 ├── project-context.md
+├── component-catalog.json
 ├── decisions/
+│   ├── <feature>.json
+│   └── patterns.json
 ├── references/
 ├── knowledge/
 ├── synthesis/
 ├── specs/
+├── mocks/
+│   └── <feature>/
 └── status.yaml
 ```
 
 ## 4. Recommended workflow
 
+Phases below use `<feature-name>` as a placeholder — replace it with
+whatever feature you're actually building. This workflow is not tied to
+any specific product; see section 6 for one worked, concrete example.
+
 ### Phase A — Understand
 
 ```text
 /uiEng mode standard
-/uiEng discover physician-management
+/uiEng discover <feature-name>
 ```
 
 `/uiEng mode` is optional — it defaults to `standard` if never set. Use
@@ -125,13 +134,24 @@ Output:
 ### Phase G — Create implementation specification
 
 ```text
-/uiEng spec physician-management
+/uiEng spec <feature-name>
 ```
+
+### Phase G.5 — Mock (optional, real files)
+
+```text
+/uiEng mock <feature-name> --lang html
+```
+
+Generates an actual, viewable prototype under
+`.ui-engineering/mocks/<feature-name>/` in `html`, `react`, or
+`typescript` — omit `--lang` to be asked or have it inferred from the
+product's existing stack. See `workflows/mocking.md`.
 
 ### Phase H — Build
 
 ```text
-/uiEng build physician-management
+/uiEng build <feature-name>
 ```
 
 ### Phase I — Review and validate
@@ -147,7 +167,7 @@ Output:
 ### Phase J — Explain decisions
 
 ```text
-/uiEng why physician-detail
+/uiEng why <decision-or-pattern-id>
 ```
 
 Works for stored decisions and for established patterns
@@ -215,6 +235,7 @@ Then:
 /uiEng compare
 /uiEng synthesize
 /uiEng spec physician-matching
+/uiEng mock physician-matching --lang typescript
 /uiEng build physician-matching
 /uiEng review
 ```
@@ -260,6 +281,7 @@ Mobbin interpretation
 reference synthesis
 UX recommendation
 UI generation
+mock/prototype file generation
 ```
 
 Those require reasoning and context and should be performed by Claude using

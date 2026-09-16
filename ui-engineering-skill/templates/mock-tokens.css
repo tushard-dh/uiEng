@@ -1,0 +1,35 @@
+/*
+  Starting point for mocks when the product has no established design
+  system yet. Fill every variable from real decisions (or the internal
+  design system if one exists) before generating a mock — never ship a
+  mock with these placeholder values unresolved. See
+  workflows/reference-analysis.md ("Token rule") and
+  workflows/mocking.md.
+*/
+:root {
+  --surface-default: #ffffff;
+  --surface-raised: #f7f7f8;
+  --text-primary: #14161a;
+  --text-secondary: #5b616e;
+  --border-default: #e2e4e8;
+  --action-primary: #2f5bff;
+  --action-primary-hover: #2547cc;
+  --status-success: #1a7f4e;
+  --status-warning: #a9660a;
+  --status-error: #c02b3c;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.75rem;
+}

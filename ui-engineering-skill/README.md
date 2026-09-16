@@ -72,19 +72,21 @@ Inside a product repository:
 /uiEng init
 ```
 
-Then:
+Then, for any feature (replace `<feature-name>` with whatever you're
+actually building — this sequence is not tied to any specific product):
 
 ```text
 /uiEng mode thorough
-/uiEng discover physician-management
+/uiEng discover <feature-name>
 /uiEng catalog
 /uiEng ask
 /uiEng mobbin
 /uiEng analyze
 /uiEng compare
 /uiEng synthesize
-/uiEng spec physician-management
-/uiEng build physician-management
+/uiEng spec <feature-name>
+/uiEng mock <feature-name> --lang typescript
+/uiEng build <feature-name>
 /uiEng review
 /uiEng fix
 /uiEng status
@@ -94,7 +96,7 @@ Then:
 You do not need to run every command manually. `/uiEng` can inspect state and
 route to the next stage.
 
-## Example
+## Worked example (illustrative — not the only use case)
 
 User:
 
@@ -118,10 +120,11 @@ Expected behavior:
 9. Compare if multiple references are selected.
 10. Synthesize a product-specific pattern.
 11. Generate UI specification.
-12. Ask for/recognize approval before implementation when appropriate.
-13. Build using existing components.
-14. Validate.
-15. Report remaining issues.
+12. Optionally generate a real HTML/React/TypeScript mock for visual sign-off.
+13. Ask for/recognize approval before implementation when appropriate.
+14. Build using existing components.
+15. Validate.
+16. Report remaining issues.
 
 ## Depth control
 
@@ -139,6 +142,37 @@ the same way on a third screen) get promoted into
 later features instead of being re-asked, while staying overridable. See
 `workflows/decision-memory.md`. Use `/uiEng patterns` to see what's been
 established.
+
+## Mocking (real files, not just a spec)
+
+`/uiEng mock <feature> [--lang html|react|typescript]` turns a UI spec
+into an actual, viewable prototype under `.ui-engineering/mocks/<feature>/`
+— open the HTML directly, or run the generated React/TypeScript scaffold.
+It asks which language if one isn't set in `config.yaml` or inferable from
+the product's existing stack. Mocks are disposable and not wired to real
+APIs or the component catalog; `/uiEng build` is the separate path that
+produces integrated, catalog-registered production code. See
+`workflows/mocking.md`.
+
+## Design distinctiveness (why this isn't just a layout generator)
+
+AI-generated UI has well-documented failure modes: visual homogenization
+(every screen looks like every other AI-generated screen), shallow
+"vibe"-driven design with no user-research grounding, screens that
+function but feel undesigned, requests executed without any critical
+pushback, and prototypes that don't scale past the first demo. `/uiEng`
+counters each of these with an explicit process step rather than a
+disclaimer — see `workflows/distinctiveness.md` and
+`rules/distinctiveness-rules.md`:
+
+- discovery requires a user-research signal (or an honest `unknown`),
+- every feature gets a "challenge" step before anything is built,
+- every synthesis gets checked against common AI-generated defaults before
+  being finalized,
+- every spec must cover real states and at least one micro-interaction
+  before it's considered complete, not just the happy-path layout,
+- the component catalog and design tokens keep output consistent as the
+  product grows, instead of accumulating one-off styles.
 
 ## Multi-reference example
 

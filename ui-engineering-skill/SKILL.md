@@ -45,6 +45,9 @@ Interpret `/uiEng` commands as follows:
 - `/uiEng compare` — compare two or more references and expose conflicts.
 - `/uiEng synthesize` — create a product-specific synthesis.
 - `/uiEng spec <feature>` — create an implementation-ready UI specification.
+- `/uiEng mock <feature> [--lang html|react|typescript]` — generate a real,
+  viewable prototype from the spec (see `workflows/mocking.md`). Asks for
+  a language if one isn't given, configured, or inferable.
 - `/uiEng build <feature>` — implement frontend after the specification exists.
 - `/uiEng review` — validate implementation against rules and spec.
 - `/uiEng fix` — fix validation findings.
@@ -86,6 +89,18 @@ number of questions needed to choose a safe path.
 18. Depth of questioning, reference gathering, and synthesis variants is
     governed by the active mode (`workflows/mode.md`), not improvised
     per-conversation.
+19. Never silently execute a shallow or ambiguous request — surface a
+    structural risk, alternative, or assumption before building
+    (`workflows/distinctiveness.md` step 1).
+20. Never default to the most statistically common AI-generated layout for
+    a screen type without checking it against this product's actual
+    context first (`workflows/distinctiveness.md` step 2).
+21. A UI spec is not complete until it covers loading/empty/error/success
+    states with real content and at least one micro-interaction — not
+    just the happy-path layout (`workflows/distinctiveness.md` step 3).
+22. `/uiEng mock` requires an existing spec and never wires real APIs,
+    auth, or catalog components — that is `/uiEng build`'s job
+    (`workflows/mocking.md`).
 
 ## Workflow
 
@@ -237,6 +252,16 @@ The UI spec should define:
 - acceptance criteria
 - reference provenance
 
+### 7a. Mock (optional, before or instead of full implementation)
+
+Read:
+`workflows/mocking.md`
+
+Generate a real, viewable prototype in the user's chosen language (`html`,
+`react`, or `typescript`) under `.ui-engineering/mocks/<feature>/`. This
+is disposable and non-integrated — it is how the user actually sees and
+feels the spec before committing to `/uiEng build`.
+
 ### 8. Implement
 
 Read:
@@ -304,6 +329,9 @@ Use project-local `.ui-engineering/`:
 ├── knowledge/
 ├── synthesis/
 ├── specs/
+├── mocks/
+│   └── <feature>/          (real html/react/typescript files, see
+│                            workflows/mocking.md — not in src/)
 └── status.yaml
 ```
 

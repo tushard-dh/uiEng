@@ -23,17 +23,33 @@
              |           |          |
              +-----------+----------+
                          |
-                     Synthesis  <---- variant count set by
-                         |            active Mode (quick/standard/thorough)
+                     Synthesis  <---- sameness check vs. common
+                         |            AI-generated defaults (Distinctiveness)
+                         |            + variant count set by Mode
                          |
-                     UI Spec  <---- checked against Component Catalog
-                         |          before proposing new components
-                    Frontend Code
+                     UI Spec  <---- checked against Component Catalog;
+                         |          polish pass (Distinctiveness) required
+                         |
+                  +------+------+
+                  |             |
+                Mock       Frontend Code
+             (html/react/    (catalog-registered,
+              typescript,     API-wired, tested)
+              disposable)
+                  |             |
+                  +------+------+
                          |
                    Validation
                          |
                       Evolve
 ```
+
+Every stage from Discovery onward runs under the **Distinctiveness** gate
+(`workflows/distinctiveness.md`): a challenge step before building, a
+sameness check before synthesis, and a polish pass before a spec counts as
+complete. This exists specifically to counter AI UI generation's known
+failure modes — visual homogenization, shallow prompting, undesigned-
+feeling output, uncritical execution, and unscalable prototypes.
 
 ## Responsibilities
 
@@ -76,6 +92,17 @@
 - a persisted config value (`workflow.mode`) that scales question count,
   reference count, and synthesis variant count up or down; does not alter
   the source-of-truth hierarchy below
+
+### Distinctiveness
+- a process gate, not an artifact: challenge step (discovery), sameness
+  check (synthesis), polish pass (spec/validation) — see
+  `workflows/distinctiveness.md` and `rules/distinctiveness-rules.md`
+
+### Mocking
+- produces real, viewable files (`.ui-engineering/mocks/<feature>/`) in
+  html/react/typescript from an existing spec; disposable and
+  non-integrated, distinct from `/uiEng build`'s catalog-registered,
+  API-wired output — see `workflows/mocking.md`
 
 ## Source-of-truth hierarchy
 

@@ -2,6 +2,11 @@
 
 Synthesis is a controlled composition of patterns from multiple references.
 
+Before finalizing, run the sameness check in
+`workflows/distinctiveness.md` step 2 — this is what stops the skill from
+defaulting to the most statistically common AI-generated layout for the
+screen type instead of one grounded in this product's actual context.
+
 ## Required behavior
 
 - Never concatenate references blindly.

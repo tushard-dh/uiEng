@@ -34,6 +34,9 @@ Review:
 - accessibility
 - responsive behavior
 - design-system compliance
+- polish pass (`workflows/distinctiveness.md` step 3): real content in
+  every state, at least one micro-interaction/transition noted, spacing
+  from the design system's scale — not just the happy path implemented
 
 ## Completion
 

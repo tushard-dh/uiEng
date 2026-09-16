@@ -20,6 +20,9 @@ workflow:
 decision_memory:
   enabled: true
   promote_after_confirmations: 2
+mocking:
+  default_lang: null  # html | react | typescript — null means ask/infer
+  output_dir: ".ui-engineering/mocks"
 validation:
   deterministic: true
   accessibility: true
