@@ -5,6 +5,12 @@
   mock with these placeholder values unresolved. See
   workflows/reference-analysis.md ("Token rule") and
   workflows/mocking.md.
+
+  DO NOT @import this file from a mock's stylesheet. Copy the resolved
+  values directly into the mock's own CSS instead — some browsers block
+  @import of a local file:// resource from a file:// page, which silently
+  drops every variable here and breaks all styling on the mock. This file
+  is a reference/editable source, not something to load at runtime.
 */
 :root {
   --surface-default: #ffffff;

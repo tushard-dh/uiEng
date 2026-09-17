@@ -65,15 +65,31 @@ proper, catalog-registered components in `src/`.
    (from `project-context.md` / API contracts), not lorem ipsum or
    generic placeholder names, so the mock actually helps someone judge fit.
 3. Start from the project's real design tokens if a design system exists
-   (colors, spacing, radius, type scale). If none exists yet, use
-   `templates/mock-tokens.css` as a semantic starting point and say so —
-   never invent arbitrary hex/pixel values that look like generic AI
-   output (see `rules/distinctiveness-rules.md` rule 1).
+   (colors, spacing, radius, type scale). If none exists yet, start from
+   `templates/mock-tokens.css` and say so — never invent arbitrary
+   hex/pixel values that look like generic AI output (see
+   `rules/distinctiveness-rules.md` rule 1). **Copy those token values
+   directly into the mock's single stylesheet — never `@import` a
+   separate tokens file.** Some browsers block `@import` of a local
+   `file://` resource from a `file://` page; when that happens every CSS
+   variable silently resolves to nothing and the page renders with no
+   colors, no spacing, and no alignment, even though the HTML/CSS "looks"
+   correct on inspection. This has actually happened — treat it as a
+   known failure mode, not a hypothetical.
 4. Include at least one interaction (a button click revealing a next
    state, a hover/focus style, a drawer opening) — a fully static image
    disguised as HTML is not a useful mock.
 5. Keep it self-contained and runnable with minimal setup per language
    (see below) — the point is fast visual feedback, not a build pipeline.
+6. For `html` mocks specifically: everything the page needs to render
+   correctly (tokens, layout, component styles) must live in files loaded
+   only via `<link>`/`<script>` tags in the HTML `<head>`/`<body>` —
+   never via `@import` inside a CSS file, and never via `fetch`. Verify
+   this by actually opening the generated `index.html` with a plain
+   double-click / `open` command (true `file://`, not a local server) and
+   confirming it's fully styled — a check over `http://localhost` alone
+   does not catch this failure mode, because HTTP does not impose the
+   same restriction `file://` does.
 
 ## Per-language output
 
@@ -109,6 +125,11 @@ Tell the user:
   command if a build scaffold was generated),
 - which states/interactions are included and which spec sections were
   intentionally left unmocked (e.g. real API wiring, auth).
+
+For `html` mocks, actually open the generated `index.html` via `file://`
+(not just a local server) before telling the user it's ready — see
+generation rule 6. If it isn't fully styled, fix the CSS structure before
+handing it off, don't ship it and hope.
 
 ## Rules
 
