@@ -35,21 +35,28 @@ From the application repository:
 /uiEng init
 ```
 
-The skill creates:
+The skill creates a **feature-first** layout (like a spec-kit
+`specs/<feature>/` folder): everything produced for a feature lives
+together in one folder, instead of being spread across type-named
+top-level folders.
 
 ```text
 .ui-engineering/
 ├── config.yaml
 ├── project-context.md
 ├── component-catalog.json
+├── status.yaml
 ├── decisions/
-│   ├── <feature>.json
-│   └── patterns.json
-├── references/
-├── knowledge/
-├── synthesis/
-├── specs/
-└── status.yaml
+│   └── patterns.json          (project-wide — the only cross-feature artifact)
+└── specs/
+    └── <feature>/
+        ├── spec.json
+        ├── decisions.json
+        ├── synthesis.json
+        ├── references/
+        │   └── <pattern-slug>.json
+        └── knowledge/
+            └── <pattern-slug>.json
 
 mocks/                  (top-level, sibling of .ui-engineering/ — not
 └── <feature>/           inside it, since mocks are meant to be opened
@@ -123,7 +130,7 @@ own" option. See `workflows/pattern-gallery.md`.
 Output:
 
 ```text
-.ui-engineering/knowledge/
+.ui-engineering/specs/<feature-name>/knowledge/
 ```
 
 ### Phase E — Compare multiple references

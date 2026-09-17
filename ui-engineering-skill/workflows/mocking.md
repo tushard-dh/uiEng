@@ -16,7 +16,7 @@ production code without going through `/uiEng build`'s process.
 `/uiEng mock <feature> [--lang html|react|typescript]`
 
 Requires a UI spec to already exist for `<feature>`
-(`.ui-engineering/specs/<feature>.json`) — mocks visualize a spec, they do
+(`.ui-engineering/specs/<feature>/spec.json`) — mocks visualize a spec, they do
 not replace deciding one. If no spec exists, say so and offer to run
 `/uiEng spec <feature>` first rather than improvising layout from
 scratch.

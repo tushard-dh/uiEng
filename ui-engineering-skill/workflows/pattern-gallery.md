@@ -101,5 +101,5 @@ large ones.
 
 ## Output
 
-`.ui-engineering/references/<feature>/<pattern-slug>.json` — one
+`.ui-engineering/specs/<feature>/references/<pattern-slug>.json` — one
 reference record per pattern, using `schemas/ui-reference.schema.json`.
