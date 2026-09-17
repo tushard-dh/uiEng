@@ -130,12 +130,23 @@ catalog rather than re-inspecting the codebase ad hoc.
 
 ### 2. Select references
 
-When the user requests Mobbin-based design:
-- Use the configured Mobbin MCP.
-- Pull as many references as the active mode allows (`workflows/mode.md`:
-  quick=2, standard=5, thorough=10).
-- Let the user select one or more references.
-- Save reference metadata using `schemas/ui-reference.schema.json`.
+Read:
+`workflows/pattern-gallery.md`
+
+When the user requests Mobbin-based design, gather references **pattern
+by pattern** (navigation, tabs, action bar, buttons, table, cards, forms,
+detail presentation — whichever this feature actually needs a decision
+for), not as one holistic "pick a screen" pass:
+- Derive the pattern list from discovery/spec.
+- Skip patterns already resolved by the component catalog or an
+  established decision pattern.
+- For each remaining pattern (within the active mode's total reference
+  budget — `workflows/mode.md`: quick=2, standard=5, thorough=10, spread
+  across all patterns): search Mobbin scoped to that pattern, show the
+  results, and let the user pick via a genuine multiple-choice question —
+  always with a "describe your own" escape.
+- Save each selection using `schemas/ui-reference.schema.json`, tagged
+  with the `pattern` it answers.
 - Do not treat a screenshot as proof of hidden behavior.
 
 ### 3. Analyze references

@@ -16,12 +16,15 @@
                  Decision Engine <---> Decision Memory
                        |               (patterns.json,
                        |                cross-feature reuse)
-             +---------+---------+
-             |         |         |
-          Mobbin    Knowledge   Design System
-            MCP        JSON         |
-             |           |          |
-             +-----------+----------+
+             +---------+-----------------+
+             |         |                 |
+      Pattern Gallery  Knowledge     Design System
+      (Mobbin, one        JSON             |
+       pattern at a        |               |
+       time: tabs,         |               |
+       bars, buttons…)     |               |
+             |             |               |
+             +-------------+---------------+
                          |
                      Synthesis  <---- sameness check vs. common
                          |            AI-generated defaults (Distinctiveness)

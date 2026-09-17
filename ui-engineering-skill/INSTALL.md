@@ -101,13 +101,18 @@ proposes components reads from this file.
 
 Claude asks only high-impact questions.
 
-### Phase C — Select Mobbin references
+### Phase C — Select Mobbin references, pattern by pattern
 
 ```text
 /uiEng mobbin
 ```
 
-The user selects one or more references through the available MCP workflow.
+Not one search for a whole screen — the skill lists the distinct patterns
+this feature needs (navigation, tabs, action bar, buttons, table, cards,
+detail presentation…), skips anything already settled by the catalog or
+an established decision, and for each remaining pattern searches Mobbin,
+shows the results, and asks you to pick — always with a "describe your
+own" option. See `workflows/pattern-gallery.md`.
 
 ### Phase D — Convert visual reference to knowledge
 

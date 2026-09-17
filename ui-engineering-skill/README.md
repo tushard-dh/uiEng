@@ -176,6 +176,17 @@ disclaimer — see `workflows/distinctiveness.md` and
 - the component catalog and design tokens keep output consistent as the
   product grows, instead of accumulating one-off styles.
 
+## Pattern gallery (how references actually get picked)
+
+`/uiEng mobbin` doesn't search once and let you pick a screen to copy. It
+works pattern by pattern, like a designer building a moodboard: it lists
+the distinct UI patterns this feature needs (navigation, tabs, action
+bar, buttons, table, cards, detail presentation…), skips anything already
+settled by the component catalog or an established decision pattern, and
+for each remaining one searches Mobbin scoped to just that pattern, shows
+you the results, and asks you to pick — always with a "describe your own"
+option instead of the search results. See `workflows/pattern-gallery.md`.
+
 ## Multi-reference example
 
 Reference A contributes:

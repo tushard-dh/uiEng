@@ -33,6 +33,15 @@
         },
         "notes": {
           "type": "string"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "The specific UI pattern this reference answers (e.g. \"primary navigation\", \"tabs\", \"action bar\", \"button style\"), not the whole screen — see workflows/pattern-gallery.md."
+        },
+        "alternatives_shown": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "reference_ids of the other options presented for this pattern before this one was selected, for provenance."
         }
       }
     }
