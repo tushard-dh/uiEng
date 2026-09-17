@@ -331,22 +331,36 @@ When the UI already exists:
 
 ## Artifacts
 
-Use project-local `.ui-engineering/`:
+Use project-local `.ui-engineering/`, organized **feature-first** (like a
+spec-kit `specs/<feature>/` folder): everything produced for a given
+feature lives together under `specs/<feature>/`, instead of being spread
+by artifact type across separate top-level folders.
 
 ```text
 .ui-engineering/
 ├── config.yaml
 ├── project-context.md
 ├── component-catalog.json
+├── status.yaml
 ├── decisions/
-│   ├── <feature>.json      (per-feature, schemas/ui-decision.schema.json)
-│   └── patterns.json       (project-wide, schemas/ui-pattern.schema.json)
-├── references/
-├── knowledge/
-├── synthesis/
-├── specs/
-└── status.yaml
+│   └── patterns.json              (project-wide, schemas/ui-pattern.schema.json —
+│                                    the only artifact that is inherently
+│                                    cross-feature, so it stays outside specs/)
+└── specs/
+    └── <feature>/
+        ├── spec.json               (schemas/ui-spec.schema.json)
+        ├── decisions.json          (schemas/ui-decision.schema.json)
+        ├── synthesis.json          (schemas/ui-synthesis.schema.json)
+        ├── references/
+        │   └── <pattern-slug>.json (schemas/ui-reference.schema.json)
+        └── knowledge/
+            └── <pattern-slug>.json (schemas/ui-knowledge.schema.json)
 ```
+
+Everything else — `config.yaml`, `project-context.md`,
+`component-catalog.json`, `status.yaml`, and `decisions/patterns.json` —
+is project-wide state, not tied to one feature, so it stays at the top
+level rather than being duplicated per feature.
 
 Mocks are the one exception to "everything lives in `.ui-engineering/`" —
 they're written to a **top-level** `mocks/<feature>/` folder (sibling of

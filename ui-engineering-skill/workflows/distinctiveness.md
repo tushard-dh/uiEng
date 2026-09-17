@@ -72,5 +72,6 @@ polish pass, regardless of the active mode.
 
 No separate artifact — this is a process gate. Record the challenge (step
 1) and any sameness-check justifications (step 2) inline in
-`.ui-engineering/decisions/<feature>.json` or `synthesis/<feature>.json`
-so they're inspectable later via `/uiEng why`.
+`.ui-engineering/specs/<feature>/decisions.json` or
+`specs/<feature>/synthesis.json` so they're inspectable later via
+`/uiEng why`.
