@@ -55,7 +55,7 @@ Then map these to the internal design system.
 Produce:
 
 ```text
-.ui-engineering/specs/<feature>/knowledge/<pattern-slug>.json
+.ui-engineering/knowledge/<feature-or-pattern>.json
 ```
 
 using `schemas/ui-knowledge.schema.json`.

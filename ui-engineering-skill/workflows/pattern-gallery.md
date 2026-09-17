@@ -63,6 +63,21 @@ and within the active mode's total reference budget (see "Budget" below):
    including which `pattern` it answers and the `alternatives_shown` that
    were not picked, for provenance.
 
+### 3.5. Review before integrating — do not skip this
+
+Do not go straight from "user picked an option" to editing the mock or
+production code. After each round of pattern picks (or once per batch if
+running several patterns back-to-back), show the user a consolidated
+review — pattern name, the chosen reference (image + `mobbin_url`), and
+exactly what will change (which file/selector/component) — and get an
+explicit go-ahead before writing any code.
+
+This is a real, separate checkpoint, not a restatement of step 3's
+multiple-choice question — the user is confirming the *application* of a
+choice to actual code, not just the choice itself. If the user wants to
+swap a pick, adjust it, or hold off on applying it, that happens here,
+before anything is edited.
+
 ### 4. Budget
 
 The active mode (`workflows/mode.md`) sets a total reference count — quick
@@ -98,8 +113,12 @@ large ones.
    this is what keeps repeated pattern types (e.g. "detail presentation")
    from being re-litigated on every feature (see
    `workflows/decision-memory.md`).
+5. Never apply a pattern pick to the mock or production code without the
+   step 3.5 review checkpoint. Picking an option and immediately editing
+   files in the same breath skips the user's last chance to catch a
+   wrong pick before it's live.
 
 ## Output
 
-`.ui-engineering/specs/<feature>/references/<pattern-slug>.json` — one
+`.ui-engineering/references/<feature>/<pattern-slug>.json` — one
 reference record per pattern, using `schemas/ui-reference.schema.json`.

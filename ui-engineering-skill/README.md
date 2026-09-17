@@ -41,13 +41,7 @@ Claude is the reasoning/orchestration layer.
 The application's internal design system is the implementation source of
 truth.
 
-Project-local `.ui-engineering/` is the persistent knowledge/state layer,
-organized **feature-first**: everything for a feature lives together under
-`specs/<feature>/` (spec, decisions, synthesis, references, knowledge),
-like a spec-kit `specs/<feature>/` folder — not spread across type-named
-top-level folders. Only `decisions/patterns.json` (cross-feature pattern
-memory) and `component-catalog.json`/`project-context.md`/`config.yaml`
-(project-wide, not per-feature) live outside `specs/`.
+Project-local `.ui-engineering/` is the persistent knowledge/state layer.
 
 ## Installation
 

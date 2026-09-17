@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""Create a standard UI Engineering feature workspace.
-
-Feature artifacts are grouped together under .ui-engineering/specs/<feature>/
-(spec-kit style) instead of being spread across type-named top-level
-folders. Only decisions/patterns.json is genuinely project-wide (it spans
-features by design) and stays outside specs/.
-"""
+"""Create a standard UI Engineering feature workspace."""
 import sys
 from pathlib import Path
 
@@ -15,14 +9,15 @@ if not feature:
     sys.exit(2)
 
 root = Path(".ui-engineering")
-feature_root = root / "specs" / feature
 paths = [
     root / "decisions",
-    feature_root / "references",
-    feature_root / "knowledge",
+    root / "references",
+    root / "knowledge",
+    root / "synthesis",
+    root / "specs" / feature,
 ]
 for path in paths:
     path.mkdir(parents=True, exist_ok=True)
 
 (root / "status.yaml").touch(exist_ok=True)
-print(f"Initialized UI Engineering workspace for: {feature} at {feature_root}")
+print(f"Initialized UI Engineering workspace for: {feature}")

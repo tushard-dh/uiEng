@@ -147,6 +147,10 @@ for), not as one holistic "pick a screen" pass:
   always with a "describe your own" escape.
 - Save each selection using `schemas/ui-reference.schema.json`, tagged
   with the `pattern` it answers.
+- Before applying any pick to the mock or production code, show the user
+  a review of what was picked (image + what will change) and get explicit
+  go-ahead — never go straight from a multiple-choice answer to an edit
+  (`workflows/pattern-gallery.md` step 3.5).
 - Do not treat a screenshot as proof of hidden behavior.
 
 ### 3. Analyze references
@@ -327,36 +331,22 @@ When the UI already exists:
 
 ## Artifacts
 
-Use project-local `.ui-engineering/`, organized **feature-first** (like a
-spec-kit `specs/<feature>/` folder): everything produced for a given
-feature lives together under `specs/<feature>/`, instead of being spread
-by artifact type across separate top-level folders.
+Use project-local `.ui-engineering/`:
 
 ```text
 .ui-engineering/
 ├── config.yaml
 ├── project-context.md
 ├── component-catalog.json
-├── status.yaml
 ├── decisions/
-│   └── patterns.json              (project-wide, schemas/ui-pattern.schema.json —
-│                                    the only artifact that is inherently
-│                                    cross-feature, so it stays outside specs/)
-└── specs/
-    └── <feature>/
-        ├── spec.json               (schemas/ui-spec.schema.json)
-        ├── decisions.json          (schemas/ui-decision.schema.json)
-        ├── synthesis.json          (schemas/ui-synthesis.schema.json)
-        ├── references/
-        │   └── <pattern-slug>.json (schemas/ui-reference.schema.json)
-        └── knowledge/
-            └── <pattern-slug>.json (schemas/ui-knowledge.schema.json)
+│   ├── <feature>.json      (per-feature, schemas/ui-decision.schema.json)
+│   └── patterns.json       (project-wide, schemas/ui-pattern.schema.json)
+├── references/
+├── knowledge/
+├── synthesis/
+├── specs/
+└── status.yaml
 ```
-
-Everything else — `config.yaml`, `project-context.md`,
-`component-catalog.json`, `status.yaml`, and `decisions/patterns.json` —
-is project-wide state, not tied to one feature, so it stays at the top
-level rather than being duplicated per feature.
 
 Mocks are the one exception to "everything lives in `.ui-engineering/`" —
 they're written to a **top-level** `mocks/<feature>/` folder (sibling of

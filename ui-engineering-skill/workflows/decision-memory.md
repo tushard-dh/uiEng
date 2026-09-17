@@ -11,7 +11,7 @@ features), not a scripted one — see `SKILL.md` "Scripts" rule.
 
 `.ui-engineering/decisions/patterns.json` using
 `schemas/ui-pattern.schema.json`. This is project-wide, distinct from
-`.ui-engineering/specs/<feature>/decisions.json` (per-feature, `schemas/
+`.ui-engineering/decisions/<feature>.json` (per-feature, `schemas/
 ui-decision.schema.json`).
 
 ## Before asking a question
